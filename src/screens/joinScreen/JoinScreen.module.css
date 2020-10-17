@@ -2,3 +2,26 @@
   text-decoration: none; 
   color: #ffff;
 }
+
+.formContainer{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2D8CFF;
+}
+
+.fieldsContainer{
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttonContainer{
+  margin : 20px;
+}
+
+.formFields{
+  background-color: #ffff;
+}
