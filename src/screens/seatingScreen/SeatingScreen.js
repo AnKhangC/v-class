@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core';
+import styles from './SeatingScreen.module.css'
 
 function SeatingScreen() {
   return (
     <>
-      <Button variant="contained" color="primary">
-        <Link to="/zoom" className="link">Join meeting with neighbours</Link>
-      </Button>
+      <div>
+        <Button variant="contained" color="primary">
+          <Link to="/zoom" className={styles.linkClass}>Join meeting with neighbours</Link>
+        </Button>
+      </div>
     </>
   )
 }
