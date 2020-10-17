@@ -1,3 +1,40 @@
+.topLevelContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.teacherContainer {
+  width: 100%;
+  flex-grow: 1;
+}
+
+.teacher {
+  display: inline-block;
+  min-width: '50%';
+  max-width: '50%';
+  min-height: '100px';
+  max-height: '100px';
+}
+
+.seatContainer {
+  width: 100%;
+  flex-grow: 5;
+}
+
+.buttonContainer {
+  width: 100%;
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .linkClass {
   text-decoration: none; 
   color: #fff;
