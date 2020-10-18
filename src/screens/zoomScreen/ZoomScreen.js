@@ -1,6 +1,6 @@
-import { Button } from '@material-ui/core'
-import React, { Component } from 'react'
+import React from 'react'
 import styles from './ZoomScreen.module.css'
+import { connect } from "react-redux"
 
 class ZoomScreen extends React.Component {
 
@@ -22,13 +22,14 @@ class ZoomScreen extends React.Component {
   }
 
   handleKeyDown(e){
+    console.log(this.props.neighbours)
     if (e.key === 'Enter') {
       this.updateMesssageHistory();
     }
   }
 
   updateMesssageHistory(){
-    if(this.state.message != ''){
+    if(this.state.message !== ''){
       this.setState({messageHistory: this.state.messageHistory.concat('You: ' + this.state.message)});
       this.setState({message: ''});
     }
@@ -65,7 +66,12 @@ class ZoomScreen extends React.Component {
       </div>
     );
   }
-
 }
 
-export default ZoomScreen
+const mapStateToProps = state => {
+  return {
+    neighbours: state.neighbours.neighbours
+  }
+}
+
+export default connect(mapStateToProps)(ZoomScreen)
