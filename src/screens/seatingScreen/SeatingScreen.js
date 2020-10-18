@@ -13,7 +13,7 @@ import { updateNeighboursList } from "../../redux/neighbours/neighbours.actions"
 
 function SeatingScreen(props) {
 
-  const [row1, setRow1] = useState(
+  const initial =
     [
       {
         id: 1,
@@ -111,11 +111,16 @@ function SeatingScreen(props) {
         occupied: false,
         selected: false
       }
-    ]
-  );
+    ];
+
+  const [row1, setRow1] = useState(initial);
 
   function updateNeighbourList() {
     props.updateNeighboursList(row1);
+  }
+
+  function updateNeighbourListAlone() {
+    props.updateNeighboursList(initial);
   }
 
   return (
@@ -124,19 +129,19 @@ function SeatingScreen(props) {
 
         <div className={styles.teacherContainer}>
           <Card variant="outlined" elevation={3} className={styles.teacher} style={{ minWidth: '40%', maxWidth: '40%' }}>
-              <Grid container
-                spacing={0}
-                direction="column"
-                alignItems="center"
-                justify="center"
-                style={{ backgroundColor: "lightgrey" }}>
-                <Grid item>
-                  <CardContent >
-                    <Typography variant="h5">Teacher</Typography>
-                  </CardContent>
-                </Grid>
+            <Grid container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+              style={{ backgroundColor: "lightgrey" }}>
+              <Grid item>
+                <CardContent >
+                  <Typography variant="h5">Teacher</Typography>
+                </CardContent>
               </Grid>
-            </Card>
+            </Grid>
+          </Card>
 
           <Typography variant="h5">Pick a seat</Typography>
         </div>
@@ -199,13 +204,13 @@ function SeatingScreen(props) {
 
         <div className={styles.buttonContainer}>
           <Box m={1}>
-            <Button variant="contained" color="primary" onClick={updateNeighbourList()}>
+            <Button variant="contained" color="primary" onClick={updateNeighbourList}>
               <Link to="/zoom" className={styles.linkClass}>Join class with neighbours</Link>
             </Button>
           </Box>
           <Box m={1}>
             <Button variant="contained" color="secondary">
-              <Link to="/zoom" className={styles.linkClass} onClick={updateNeighbourList()} >Join class alone</Link>
+              <Link to="/zoom" className={styles.linkClass} onClick={updateNeighbourListAlone} >Join class alone</Link>
             </Button>
           </Box>
         </div>
@@ -222,7 +227,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateNeighboursList: (neighbours) => dispatch(updateNeighboursList(neighbours))
+    updateNeighboursList: (neighbours) => dispatch(updateNeighboursList(neighbours)),
   }
 }
 
