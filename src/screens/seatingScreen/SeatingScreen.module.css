@@ -1,4 +1,7 @@
 .topLevelContainer {
+  width: 100%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -8,30 +11,56 @@
 
 .teacherContainer {
   width: 100%;
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.teacher {
-  display: inline-block;
-  background-color: dimgrey;
-  min-width: '50%';
-  max-width: '50%';
-  min-height: '100px';
-  max-height: '100px';
+.teacher .title {
+
 }
 
 .seatContainer {
   width: 100%;
   flex-grow: 1;
+  flex-shrink: 1;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.seatColumn {
+  flex-grow: 10;
+  flex-shrink: 1;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .buttonContainer {
   width: 100%;
+  flex-shrink: 1;
 
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-end;
   align-items: center;
+}
+
+.joinButton {
+  margin: 10px;
+  padding: 10px;
 }
 
 .linkClass {

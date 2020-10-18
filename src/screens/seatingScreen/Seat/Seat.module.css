@@ -1,0 +1,18 @@
+.seat {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.circle {
+  margin: 0;
+}
+
+.name {
+  margin-top: 0;
+  margin-bottom: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
