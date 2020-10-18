@@ -1,0 +1,70 @@
+.global{
+    display: flex;
+    font-size: 15px;
+    /* background-color: #9ea5b0; */
+    font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.zoom{
+    border-style: outset;
+    display: flex;
+    height: 600px;
+    width: 900px;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.zoomImage{
+    width: 900px;
+}
+
+.chatBox{
+    background-color: #FFF;
+    border-style: outset;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    width: 250px;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.participantList{
+    border-bottom: 2px solid #9ea5b0;
+    height: 250px;
+}
+
+.participantList h1{
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.participantList ul{
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.participantList ul li:before{
+    content: '';   
+    display: inline-block;   
+    height: 25px;   
+    width: 25px;    
+    background-size: 25px;   
+    background-image: url('./profil_icon.png'); 
+    background-repeat: no-repeat;   
+    margin-right: 2px;
+    background-position: center center;
+    vertical-align: middle;
+    padding-top: 5px;
+}
+
+.liveChat{
+    height: 300px;
+}
+
+.message{
+    border-top: 2px solid #9ea5b0;
+    height: 50px;
+}
