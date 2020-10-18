@@ -2,59 +2,70 @@ import { Button } from '@material-ui/core'
 import React, { Component } from 'react'
 import styles from './ZoomScreen.module.css'
 
-var names = ["Mike", "Alexis", "Antoine", "Sam", "Farouk"];
+class ZoomScreen extends React.Component {
 
-function ZoomScreen() {
-  return(
-    <div className = {styles.global}>
+  constructor(props){
+    super(props);
+    this.state = {
+      names: ["Mike", "Alexis", "Antoine", "Sam", "Farouk"], 
+      messageHistory: ["Alexis: Hello", "Antoine: Heyy"],
+      message: ''
+    }
 
-      <div className = {styles.zoom}>
-        <img className = {styles.zoomImage} src={require('./NoParticipation1.jpg')} />
+    this.handleChange = this.handleChange.bind(this);
+    this.updateMesssageHistory = this.updateMesssageHistory.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({message: event.target.value});
+  }
+
+  handleKeyDown(e){
+    if (e.key === 'Enter') {
+      this.updateMesssageHistory();
+    }
+  }
+
+  updateMesssageHistory(){
+    if(this.state.message != ''){
+      this.setState({messageHistory: this.state.messageHistory.concat('You: ' + this.state.message)});
+      this.setState({message: ''});
+    }
+  }
+
+  render(){
+    return(
+      <div className = {styles.global}>
+        <div className = {styles.zoom}>
+          <img className = {styles.zoomImage} src={require('./NoParticipation1.jpg')} />
+        </div>
+        <div className = {styles.chatBox}>
+          <div className = {styles.participantList}>
+            <h1>Neighbors</h1>
+            <ul>
+              {this.state.names.map((value, index) => {
+                return <li key={index}>{value}</li>
+              })}
+            </ul>
+          </div>
+          <div className = {styles.liveChat}>
+            <ul>
+            {this.state.messageHistory.map((value, index) => {
+                return <li key={index}>{value}</li>
+              })}
+            </ul>
+          </div>
+          <div className = {styles.message}>
+            <input type = "text" value={this.state.message} placeholder = "Message..." onChange = {this.handleChange} 
+            onKeyDown = {this.handleKeyDown}/>
+            <button type = "button" onClick = {this.updateMesssageHistory}>Send</button>
+          </div>
+        </div>
       </div>
-      <div className = {styles.chatBox}>
-        <div className = {styles.participantList}>
-          <h1>Neighbors</h1>
-          <ul>
-            {names.map((value, index) => {
-              return <li key={index}>{value}</li>
-            })}
-          </ul>
-        </div>
-        <div className = {styles.liveChat}>
-          <p>liveChat</p>
-        </div>
-        <div className = {styles.message}>
-          <p>Message</p>
-        </div>
-      </div>
+    );
+  }
 
-    </div>
-  );
 }
-
-// class ZoomScreen extends React.Component {
-
-//   render(){
-//     return(
-//       <div className = "global">
-//         "Test";
-
-//         <div className = "zoom">
-
-//         </div>
-//         <div className = "chatBox">
-//           <div className = "participantList">
-//           <p>Wow</p>
-//           </div>
-//           <div className = "liveChat">
-
-//           </div>
-//         </div>
-
-//       </div>
-//     );
-//   }
-
-// }
 
 export default ZoomScreen

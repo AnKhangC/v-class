@@ -1,12 +1,11 @@
 .global{
     display: flex;
     font-size: 15px;
-    /* background-color: #9ea5b0; */
+    background-color: #2D8CFF;
     font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .zoom{
-    border-style: outset;
     display: flex;
     height: 600px;
     width: 900px;
@@ -21,7 +20,7 @@
 
 .chatBox{
     background-color: #FFF;
-    border-style: outset;
+    border-left: 2px solid #f5f5f5;
     display: flex;
     flex-direction: column;
     height: 600px;
@@ -32,13 +31,14 @@
 }
 
 .participantList{
-    border-bottom: 2px solid #9ea5b0;
+    border-bottom: 2px solid #f5f5f5;
     height: 250px;
 }
 
 .participantList h1{
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 10px;
+    text-align: center;
 }
 
 .participantList ul{
@@ -61,10 +61,37 @@
 }
 
 .liveChat{
-    height: 300px;
+    height: 320px;
+    overflow-y: scroll;
+}
+
+.liveChat ul{
+    font-size: 12px;
+    padding-left: 5px;
+    list-style-type: none;
 }
 
 .message{
-    border-top: 2px solid #9ea5b0;
-    height: 50px;
+    border-top: 2px solid #f5f5f5;
+    height: 30px;
+    display: flex;   
+}
+
+.message input{
+    height: 24px;
+    width: 180px;
+    border: initial;
+    outline: none;
+    font-size: 13px;
+}
+
+.message button{
+    height: 22px;
+    width: 50px;
+    align-self: center;
+    background-color: #2D8CFF;
+    color: white;
+    outline: none;
+    border-radius: 8px;
+    font-size: 11px;
 }
