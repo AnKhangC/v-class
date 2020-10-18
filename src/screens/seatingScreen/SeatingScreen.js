@@ -8,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Seat from './Seat/Seat';
+import { connect } from "react-redux"
+import { updateNeighboursList } from "../../redux/neighbours/neighbours.actions"
 
-function SeatingScreen() {
+function SeatingScreen(props) {
 
   const [row1, setRow1] = useState(
     [
@@ -112,6 +114,10 @@ function SeatingScreen() {
     ]
   );
 
+  function updateNeighbourList() {
+    props.updateNeighboursList(row1);
+  }
+
   return (
     <>
       <div className={styles.topLevelContainer}>
@@ -193,13 +199,13 @@ function SeatingScreen() {
 
         <div className={styles.buttonContainer}>
           <Box m={1}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={updateNeighbourList()}>
               <Link to="/zoom" className={styles.linkClass}>Join class with neighbours</Link>
             </Button>
           </Box>
           <Box m={1}>
             <Button variant="contained" color="secondary">
-              <Link to="/zoom" className={styles.linkClass}>Join class alone</Link>
+              <Link to="/zoom" className={styles.linkClass} onClick={updateNeighbourList()} >Join class alone</Link>
             </Button>
           </Box>
         </div>
@@ -208,4 +214,16 @@ function SeatingScreen() {
   )
 }
 
-export default SeatingScreen
+const mapStateToProps = state => {
+  return {
+    neighbours: state.neighbours.neighbours
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateNeighboursList: (neighbours) => dispatch(updateNeighboursList(neighbours))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SeatingScreen)
