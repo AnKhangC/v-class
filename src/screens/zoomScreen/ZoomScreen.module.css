@@ -92,6 +92,7 @@
     background-color: #2D8CFF;
     color: white;
     outline: none;
+    /* border: initial; */
     border-radius: 8px;
     font-size: 11px;
 }
