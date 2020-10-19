@@ -1,17 +1,48 @@
 .global{
-    display: flex;
     font-size: 15px;
     background-color: #2D8CFF;
     font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.outerFrame{
+    margin-top: auto;
+    display: flex;
+}
+
+.leaveButton{
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 1200px;
+    padding-top: 4px;
+}
+
+.leaveButton button{
+    height: 22px;
+    width: 40px;
+    align-self: center;
+    background-color: #db1f1f;
+    color: white;
+    outline: none;
+    /* border: initial; */
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+.leaveButton button:hover{
+    background-color: #ab1a1a;
 }
 
 .zoom{
-    display: flex;
     height: 600px;
     width: 900px;
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
+    display: flex;
+    flex-direction: row;
 }
 
 .zoomImage{
@@ -87,12 +118,20 @@
 
 .message button{
     height: 22px;
-    width: 50px;
+    width: 40px;
     align-self: center;
     background-color: #2D8CFF;
     color: white;
     outline: none;
-    /* border: initial; */
     border-radius: 8px;
     font-size: 11px;
 }
+
+.message button:hover{
+    background-color: #1872b8;
+}
+
+.linkClass {
+    text-decoration: none; 
+    color: #ffff;
+  }

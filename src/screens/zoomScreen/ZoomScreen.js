@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './ZoomScreen.module.css'
+import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import { Button } from '@material-ui/core';
 
@@ -12,7 +13,7 @@ class ZoomScreen extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      names: ["Mike", "Alexis", "Antoine", "Sam", "Farouk"], 
+      names: ["Jessica", "Martin", "Naissa", "Jack", "Chaimae"], 
       messageHistory: [],
       message: '',
       helloMessageBank: ["Hello", "Heyyy", "Hey what's up", "Hey guyss", "Hii"],
@@ -25,6 +26,11 @@ class ZoomScreen extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.getRandomName = this.getRandomName.bind(this);
     this.getRandomHello = this.getRandomHello.bind(this);
+    this.isAlone = this.isAlone.bind(this);
+
+    if(this.isAlone()){
+      this.state.names = [];
+    }
   }
 
   //When send button is clicked
@@ -48,6 +54,7 @@ class ZoomScreen extends React.Component {
     }
 
     //Send random message from imaginary neighbors
+    if(this.state.names.length !== 0){
     setTimeout(() => {
       if(this.state.counter === 0){
         this.setState({messageHistory: this.state.messageHistory.concat(this.getRandomName() + ": " + this.getRandomHello())});
@@ -62,8 +69,7 @@ class ZoomScreen extends React.Component {
         }, 1000);
       }
     }, 1000);
-
-    
+    }
   }
 
   //Get random name from name bank
@@ -81,33 +87,49 @@ class ZoomScreen extends React.Component {
     return this.state.questionAnswerMessageBank[getRandomInt(this.state.questionAnswerMessageBank.length)]
   }
 
+  isAlone(){    
+    var index = this.props.neighbours.findIndex(x => x.selected === true)
+    if(index >= 0){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   render(){
     return(
       <div className = {styles.global}>
-        <div className = {styles.zoom}>
-          <img className = {styles.zoomImage} src={require('./NoParticipation1.jpg')} />
+        <div className = {styles.outerFrame}>
+          <div className = {styles.zoom}>
+            <img className = {styles.zoomImage} src={require('./NoParticipation1.jpg')} />
+          </div>
+          <div className = {styles.chatBox}>
+            <div className = {styles.participantList}>
+              <h1>Neighbors</h1>
+              <ul>
+                {this.state.names.map((value, index) => {
+                  return <li key={index}>{value}</li>
+                })}
+              </ul>
+            </div>
+            <div className = {styles.liveChat}>
+              <ul>
+              {this.state.messageHistory.map((value, index) => {
+                  return <li key={index}>{value}</li>
+                })}
+              </ul>
+            </div>
+            <div className = {styles.message}>
+              <input type = "text" value={this.state.message} placeholder = "Message..." onChange = {this.handleChange} 
+              onKeyDown = {this.handleKeyDown}/>
+              <Button type = "button" onClick = {this.updateMesssageHistory}>Send</Button>
+            </div>
+          </div>
         </div>
-        <div className = {styles.chatBox}>
-          <div className = {styles.participantList}>
-            <h1>Neighbors</h1>
-            <ul>
-              {this.state.names.map((value, index) => {
-                return <li key={index}>{value}</li>
-              })}
-            </ul>
-          </div>
-          <div className = {styles.liveChat}>
-            <ul>
-            {this.state.messageHistory.map((value, index) => {
-                return <li key={index}>{value}</li>
-              })}
-            </ul>
-          </div>
-          <div className = {styles.message}>
-            <input type = "text" value={this.state.message} placeholder = "Message..." onChange = {this.handleChange} 
-            onKeyDown = {this.handleKeyDown}/>
-            <button type = "button" onClick = {this.updateMesssageHistory}>Send</button>
-          </div>
+        <div className = {styles.leaveButton}>
+          <Button type = "button" variant="contained">
+            <Link to="/" className={styles.linkClass}>Leave</Link>
+          </Button>
         </div>
       </div>
     );

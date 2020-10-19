@@ -23,7 +23,7 @@ function SeatingScreen(props) {
       },
       {
         id: 2,
-        name: "Paul",
+        name: "Jessica",
         occupied: true,
         selected: false
       },
@@ -47,7 +47,7 @@ function SeatingScreen(props) {
       },
       {
         id: 6,
-        name: "Joe",
+        name: "Naissa",
         occupied: true,
         selected: false
       },
@@ -89,7 +89,7 @@ function SeatingScreen(props) {
       },
       {
         id: 13,
-        name: "AnKhang",
+        name: "Lara",
         occupied: true,
         selected: false
       },
