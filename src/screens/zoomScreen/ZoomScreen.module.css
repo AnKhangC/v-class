@@ -44,7 +44,7 @@
 
 .zoom{
     height: 600px;
-    width: 700px;
+    width: 750px;
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
@@ -52,7 +52,7 @@
 }
 
 .zoomImage{
-    width: 800px;
+    width: 750px;
 }
 
 .chatFrame{
@@ -60,7 +60,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 700px;
 }
 
 .allChatBox{

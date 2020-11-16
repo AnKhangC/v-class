@@ -36,7 +36,9 @@ class ZoomScreen extends React.Component {
     this.getRandomHello = this.getRandomHello.bind(this);
     this.isAlone = this.isAlone.bind(this);
     this.neighboursChat = this.neighboursChat.bind(this);
+    this.allChat = this.allChat.bind(this);
     this.handleMinimize = this.handleMinimize.bind(this);
+    this.allChatHandleMinimize = this.allChatHandleMinimize.bind(this);
 
     if (this.isAlone()) {
       this.state.names = [];
@@ -45,6 +47,10 @@ class ZoomScreen extends React.Component {
 
   handleMinimize() {
     this.setState({ showNeighboursChat: !this.state.showNeighboursChat })
+  }
+
+  allChatHandleMinimize() {
+    this.setState({ showAllChat: !this.state.showAllChat })
   }
 
   allChat() {
@@ -66,8 +72,9 @@ class ZoomScreen extends React.Component {
           <Button type="button" onClick={this.updateAllMesssageHistory}>Send</Button>
         </div>
       </div>
-    )
+    );
   }
+
   neighboursChat() {
     return (
       <div className={styles.chatBox}>
@@ -91,7 +98,7 @@ class ZoomScreen extends React.Component {
             onKeyDown={this.handleKeyDown} />
           <Button type="button" onClick={this.updateNeighbourMesssageHistory}>Send</Button>
         </div>
-        </div>
+      </div>
     );
   }
 
@@ -102,7 +109,7 @@ class ZoomScreen extends React.Component {
     this.setState({ allMessage: event.target.value });
   }
 
-   //When send button is clicked for neighbour chat
+  //When send button is clicked for neighbour chat
   handleChangeNeighbour(event) {
     this.setState({ neighbourMessage: event.target.value });
   }
@@ -110,7 +117,7 @@ class ZoomScreen extends React.Component {
   //When enter key is pressed
   handleKeyDown(e) {
     if (e.key === 'Enter') {
-          this.updateAllMesssageHistory();
+      this.updateAllMesssageHistory();
       this.updateNeighbourMesssageHistory();
     }
   }
@@ -118,33 +125,33 @@ class ZoomScreen extends React.Component {
   //Update messageHistory for all chat with message from sender
   updateAllMesssageHistory() {
     if (this.state.allMessage !== '') {
-          this.setState({ allMessageHistory: this.state.allMessageHistory.concat('You: ' + this.state.allMessage) });
+      this.setState({ allMessageHistory: this.state.allMessageHistory.concat('You: ' + this.state.allMessage) });
       this.setState({ allMessage: '' });
     }
 
     //Send random message from imaginary neighbors
     if (this.state.names.length !== 0 && this.state.allMessage !== '') {
+      setTimeout(() => {
+        if (this.state.counter === 0) {
+          this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
           setTimeout(() => {
-            if (this.state.counter === 0) {
-              this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
-              setTimeout(() => {
-                this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
-              }, 500);
-              this.setState({ counter: this.state.counter + 1 });
-            } else {
-              this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
-              setTimeout(() => {
-                this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
-              }, 1000);
-            }
+            this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
+          }, 500);
+          this.setState({ counter: this.state.counter + 1 });
+        } else {
+          this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
+          setTimeout(() => {
+            this.setState({ allMessageHistory: this.state.allMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
           }, 1000);
+        }
+      }, 1000);
     }
   }
 
   //Update messageHistory for neighbour chat with message from sender
   updateNeighbourMesssageHistory() {
     if (this.state.neighbourMessage !== '') {
-          this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat('You: ' + this.state.neighbourMessage) });
+      this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat('You: ' + this.state.neighbourMessage) });
       this.setState({ neighbourMessage: '' });
     }
 
@@ -152,20 +159,20 @@ class ZoomScreen extends React.Component {
     //Send random message from imaginary neighbors
 
     if (this.state.names.length !== 0 && this.state.neighbourMessage !== '') {
+      setTimeout(() => {
+        if (this.state.counter === 0) {
+          this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
           setTimeout(() => {
-            if (this.state.counter === 0) {
-              this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
-              setTimeout(() => {
-                this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
-              }, 500);
-              this.setState({ counter: this.state.counter + 1 });
-            } else {
-              this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
-              setTimeout(() => {
-                this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
-              }, 1000);
-            }
+            this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomHello()) });
+          }, 500);
+          this.setState({ counter: this.state.counter + 1 });
+        } else {
+          this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
+          setTimeout(() => {
+            this.setState({ neighbourMessageHistory: this.state.neighbourMessageHistory.concat(this.getRandomName() + ": " + this.getRandomQuestionAnswer()) });
           }, 1000);
+        }
+      }, 1000);
     }
   }
 
@@ -195,13 +202,13 @@ class ZoomScreen extends React.Component {
 
   render() {
     return (
-        <div className={styles.global}>
-          <div className={styles.outerFrame}>
-            <div className={styles.zoom}>
-              <img className={styles.zoomImage} src={require('./NoParticipation1.jpg')} />
+      <div className={styles.global}>
+        <div className={styles.outerFrame}>
+          <div className={styles.zoom}>
+            <img className={styles.zoomImage} src={require('./zoomScreen.png')} />
           </div>
           <div className={styles.chatFrame} >
-            {this.allChat()}
+            {this.state.showAllChat ? <this.allChat /> : null}
             {(this.state.showNeighboursChat && !this.isAlone()) ? <this.neighboursChat /> : null}
           </div>
         </div>
@@ -210,6 +217,7 @@ class ZoomScreen extends React.Component {
             <Link to="/" className={styles.linkClass}>Leave</Link>
           </Button>
           <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff' }} onClick={this.handleMinimize}>Neighbours Chat</Button>
+          <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Chat</Button>
         </div>
       </div>
     );
