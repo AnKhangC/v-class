@@ -14,6 +14,7 @@ class ZoomScreen extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       names: ["Jessica", "Martin", "Naissa", "Jack", "Chaimae"],
       neighbourMessageHistory: [],
@@ -39,10 +40,16 @@ class ZoomScreen extends React.Component {
     this.allChat = this.allChat.bind(this);
     this.handleMinimize = this.handleMinimize.bind(this);
     this.allChatHandleMinimize = this.allChatHandleMinimize.bind(this);
+    this.getGroup = this.getGroup.bind(this)
 
     if (this.isAlone()) {
       this.state.names = [];
+    } else {
+      // var neighbourName = this.props.neighbours.filter(seat => this.getGroup().contains(seat.id));
+      var neighbourName = this.props.neighbours.filter(seat => this.getGroup().includes(seat.id) && seat.name !== "Empty").map(seat => seat.name);
+      this.state.names = neighbourName;
     }
+    
   }
 
   handleMinimize() {
@@ -200,6 +207,11 @@ class ZoomScreen extends React.Component {
     }
   }
 
+  getGroup() {
+    var index = this.props.neighbours.findIndex(x => x.selected === true)
+    return this.props.neighbours[index].group;
+  }
+
   render() {
     return (
       <div className={styles.global}>
@@ -218,6 +230,9 @@ class ZoomScreen extends React.Component {
           </Button>
           <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff' }} onClick={this.handleMinimize}>Neighbours Chat</Button>
           <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Chat</Button>
+          <Button style={{ backgroundColor: '#ffff' }}>
+            <Link to="/seating" className={styles.linkClass} style={{ color: 'black' }}>Change Seat</Link>
+          </Button>
         </div>
       </div>
     );

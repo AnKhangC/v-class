@@ -19,97 +19,113 @@ function SeatingScreen(props) {
         id: 1,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [1,2,5,6]
       },
       {
         id: 2,
         name: "Jessica",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [1,2,5,6]
       },
       {
         id: 3,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [3,4,7,8]
       },
       {
         id: 4,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [3,4,7,8]
       },
       {
         id: 5,
         name: "Martin",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [1,2,5,6]
       },
       {
         id: 6,
         name: "Naissa",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [1,2,5,6]
       },
       {
         id: 7,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [3,4,7,8]
       },
       {
         id: 8,
         name: "Jack",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [3,4,7,8]
       },
       {
         id: 9,
         name: "Chaimae",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [9,10,13,14]
       },
       {
         id: 10,
         name: "Rob",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [9,10,13,14]
       },
       {
         id: 11,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [11,12,15,16]
       },
       {
         id: 12,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [11,12,15,16]
       },
       {
         id: 13,
         name: "Lara",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [9,10,13,14]
       },
       {
         id: 14,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [9,10,13,14]
       },
       {
         id: 15,
         name: "Tom",
         occupied: true,
-        selected: false
+        selected: false,
+        group: [11,12,15,16]
       },
       {
         id: 16,
         name: "Empty",
         occupied: false,
-        selected: false
+        selected: false,
+        group: [11,12,15,16]
       }
     ];
 
@@ -121,6 +137,15 @@ function SeatingScreen(props) {
 
   function updateNeighbourListAlone() {
     props.updateNeighboursList(initial);
+  }
+  
+  const isAlone = () => {
+    var index = row1.findIndex(x => x.selected === true)
+    if (index >= 0) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   return (
@@ -204,7 +229,7 @@ function SeatingScreen(props) {
 
         <div className={styles.buttonContainer}>
           <Box m={1}>
-            <Button variant="contained" color="primary" onClick={updateNeighbourList}>
+            <Button variant="contained" disabled={isAlone()} color="primary" onClick={updateNeighbourList}>
               <Link to="/zoom" className={styles.linkClass}>Join class with neighbours</Link>
             </Button>
           </Box>
