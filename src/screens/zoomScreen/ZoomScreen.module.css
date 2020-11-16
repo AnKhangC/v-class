@@ -4,11 +4,14 @@
     font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .outerFrame{
     margin-top: auto;
     display: flex;
+    flex-direction: row;
 }
 
 .leaveButton{
@@ -20,16 +23,15 @@
 }
 
 .leaveButton button{
-    height: 22px;
-    width: 40px;
     align-self: center;
     background-color: #db1f1f;
-    color: white;
+    color: black;
     outline: none;
-    /* border: initial; */
     border-radius: 8px;
     font-size: 11px;
+    margin : 2px;
 }
+
 
 .leaveButton button:hover{
     background-color: #ab1a1a;
@@ -37,16 +39,22 @@
 
 .zoom{
     height: 600px;
-    width: 900px;
+    width: 800px;
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
     display: flex;
-    flex-direction: row;
 }
 
 .zoomImage{
-    width: 900px;
+    width: 800px;
+}
+
+.chatFrame{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .chatBox{
@@ -92,7 +100,7 @@
 }
 
 .liveChat{
-    height: 320px;
+    height: 550px;
     overflow-y: scroll;
 }
 
