@@ -46,7 +46,6 @@ class ZoomScreen extends React.Component {
     if (this.isAlone()) {
       this.state.names = [];
     } else {
-      // var neighbourName = this.props.neighbours.filter(seat => this.getGroup().contains(seat.id));
       var neighbourName = this.props.neighbours.filter(seat => this.getGroup().includes(seat.id) && seat.name !== "Empty").map(seat => seat.name);
       this.state.names = neighbourName;
     }
