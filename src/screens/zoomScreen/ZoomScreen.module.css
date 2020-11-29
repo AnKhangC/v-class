@@ -20,8 +20,8 @@
 .leaveButton{
     margin-bottom: auto;
     display: flex;
-    flex-direction: row-reverse;
-    width: 1290px;
+    flex-direction: row;
+    /* width: 1290px; */
     margin-top: 2%;
 }
 
