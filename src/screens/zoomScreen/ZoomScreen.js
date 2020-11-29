@@ -254,7 +254,8 @@ class ZoomScreen extends React.Component {
               playing={true}
             />
             <Image className={styles.icon} src={require('./noCameraUser.png')} />
-            <WebcamCapture></WebcamCapture>
+            {this.state.video && <WebcamCapture></WebcamCapture>}
+            {!this.state.video && <Image className={styles.icon} src={require('./noCameraUser.png')} />}
           </div>
           <div className={styles.chatFrame} >
             {this.state.showAllChat ? <this.allChat /> : null}
@@ -283,8 +284,11 @@ class ZoomScreen extends React.Component {
           <Button style={{ backgroundColor: '#ffff' }}>
             <Link to="/seating" className={styles.linkClass} style={{ color: 'black' }}>Change Seat</Link>
           </Button>
-          <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Chat</Button>
-          <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff' }} onClick={this.handleMinimize}>Neighbours Chat</Button>
+          { !this.state.showAllChat  && <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Show Chat</Button> }
+          { this.state.showAllChat  && <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Hide Chat</Button> }
+          { !this.state.showNeighboursChat && <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff', fontSize: '9px' }} onClick={this.handleMinimize}>Show Neighbours Chat</Button> }
+          { this.state.showNeighboursChat && <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff', fontSize: '9px' }} onClick={this.handleMinimize}>Hide Neighbours Chat</Button> }
+          
           <Button type="button" variant="contained">
             <Link to="/" className={styles.linkClass}>Leave</Link>
           </Button>
