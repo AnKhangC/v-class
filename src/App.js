@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import JoinScreen from './screens/joinScreen/JoinScreen';
 import SeatingScreen from './screens/seatingScreen/SeatingScreen';
+import WebcamCapture from './screens/zoomScreen/webcam';
 import ZoomScreen from './screens/zoomScreen/ZoomScreen';
 
 function App() {

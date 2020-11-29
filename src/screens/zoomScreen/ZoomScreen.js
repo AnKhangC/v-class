@@ -3,6 +3,7 @@ import styles from './ZoomScreen.module.css'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import { Button } from '@material-ui/core';
+import WebcamCapture from './webcam.js'
 
 
 function getRandomInt(max) {
@@ -217,7 +218,8 @@ class ZoomScreen extends React.Component {
       <div className={styles.global}>
         <div className={styles.outerFrame}>
           <div className={styles.zoom}>
-            <img className={styles.zoomImage} src={require('./zoomScreen.png')} />
+            <WebcamCapture></WebcamCapture>
+            {/* <img className={styles.zoomImage} src={require('./zoomScreen.png')} /> */}
           </div>
           <div className={styles.chatFrame} >
             {this.state.showAllChat ? <this.allChat /> : null}
