@@ -3,8 +3,13 @@ import styles from './ZoomScreen.module.css'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import { Button } from '@material-ui/core';
-import WebcamCapture from './webcam.js';
-import ReactPlayer from 'react-player';
+import WebcamCapture from './webcam.js'
+import IconButton from '@material-ui/core/IconButton';
+import MicIcon from '@material-ui/icons/Mic';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import MicOffIcon from '@material-ui/icons/MicOff';
+import VideocamOffIcon from '@material-ui/icons/VideocamOff';
+import ReactPlayer from 'react-player'
 import Image from 'react-bootstrap/Image';
 
 
@@ -28,7 +33,9 @@ class ZoomScreen extends React.Component {
       questionAnswerMessageBank: ["Idk", "I don't really know", "I think so", "Yeahh", "Probably", "I wasn't paying attention lol"],
       counter: 0,
       showNeighboursChat: true,
-      showAllChat: true
+      showAllChat: true,
+      muted: false,
+      video: true
     }
 
     this.handleChangeAll = this.handleChangeAll.bind(this);
@@ -45,10 +52,12 @@ class ZoomScreen extends React.Component {
     this.allChatHandleMinimize = this.allChatHandleMinimize.bind(this);
     this.getGroup = this.getGroup.bind(this)
 
+    this.toggleMute = this.toggleMute.bind(this);
+    this.toggleVideo = this.toggleVideo.bind(this);
+
     if (this.isAlone()) {
       this.state.names = [];
     } else {
-      // var neighbourName = this.props.neighbours.filter(seat => this.getGroup().contains(seat.id));
       var neighbourName = this.props.neighbours.filter(seat => this.getGroup().includes(seat.id) && seat.name !== "Empty").map(seat => seat.name);
       this.state.names = neighbourName;
     }
@@ -61,6 +70,14 @@ class ZoomScreen extends React.Component {
 
   allChatHandleMinimize() {
     this.setState({ showAllChat: !this.state.showAllChat })
+  }
+
+  toggleMute() {
+    this.setState({ mute: !this.state.mute })
+  }
+
+  toggleVideo() {
+    this.setState({ video: !this.state.video })
   }
 
   allChat() {
@@ -245,13 +262,31 @@ class ZoomScreen extends React.Component {
           </div>
         </div>
         <div className={styles.leaveButton}>
-          <Button type="button" variant="contained">
-            <Link to="/" className={styles.linkClass}>Leave</Link>
-          </Button>
-          <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff' }} onClick={this.handleMinimize}>Neighbours Chat</Button>
-          <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Chat</Button>
+          {!this.state.mute && <IconButton style={{ backgroundColor: '#ffff' }} onClick={this.toggleMute}>
+            <MicIcon/>
+            <h4>Mute</h4>
+          </IconButton>}
+          {this.state.mute && <IconButton style={{ backgroundColor: '#ffff' }} onClick={this.toggleMute}>
+            <MicOffIcon/>
+            <h4>UnMute</h4>
+          </IconButton>}
+          
+          {this.state.video && <IconButton style={{ backgroundColor: '#ffff' }} onClick={this.toggleVideo}>
+            <VideocamIcon/>
+            <h4>Stop video</h4>
+          </IconButton>}
+          {!this.state.video && <IconButton style={{ backgroundColor: '#ffff' }} onClick={this.toggleVideo}>
+            <VideocamOffIcon/>
+            <h4>Start video</h4>
+          </IconButton>}
+          
           <Button style={{ backgroundColor: '#ffff' }}>
             <Link to="/seating" className={styles.linkClass} style={{ color: 'black' }}>Change Seat</Link>
+          </Button>
+          <Button style={{ backgroundColor: '#ffff' }} onClick={this.allChatHandleMinimize}>Chat</Button>
+          <Button disabled={this.isAlone()} style={{ backgroundColor: '#ffff' }} onClick={this.handleMinimize}>Neighbours Chat</Button>
+          <Button type="button" variant="contained">
+            <Link to="/" className={styles.linkClass}>Leave</Link>
           </Button>
         </div>
       </div>

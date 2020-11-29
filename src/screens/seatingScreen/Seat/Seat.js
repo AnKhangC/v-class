@@ -21,6 +21,15 @@ function Seat(props) {
     }
   }
 
+  const isSelectedGroup = () => {
+    var selectedIndex = props.row.findIndex(x => x.selected === true);
+    if (selectedIndex >= 0) {
+      return props.row[selectedIndex].group.includes(props.seat.id)
+    } else {
+      return false;
+    }
+  }
+
   return (
     <>
       <div className={styles.seat}>
@@ -38,8 +47,8 @@ function Seat(props) {
             backgroundColor: ((props.seat.occupied === true) ? "grey" : ((props.seat.selected === true) ? "blue" : "white"))
           }}
         />
-        <p className={styles.name}>{props.seat.selected === true && "My Seat"}</p>
-        <p className={styles.name}>{props.seat.selected === false && props.seat.name}</p>
+        <p className={isSelectedGroup() ? styles.nameSelectedGroup : styles.name}>{props.seat.selected === true && "My Seat"}</p>
+        <p className={isSelectedGroup() ? styles.nameSelectedGroup : styles.name}>{props.seat.selected === false && props.seat.name}</p>
       </div>
     </>
   )

@@ -35,8 +35,8 @@
 .leaveButton{
     margin-bottom: auto;
     display: flex;
-    flex-direction: row-reverse;
-    width: 1290px;
+    flex-direction: row;
+    /* width: 1290px; */
     margin-top: 2%;
 }
 
@@ -58,8 +58,8 @@
 }
 
 .zoom{
-    height: 600px;
-    width: 750px;
+    height: 400px;
+    width: 700px;
     margin-left: auto;
     margin-top: auto;
     margin-bottom: auto;
