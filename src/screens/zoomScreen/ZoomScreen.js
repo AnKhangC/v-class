@@ -3,7 +3,9 @@ import styles from './ZoomScreen.module.css'
 import { Link } from 'react-router-dom'
 import { connect } from "react-redux"
 import { Button } from '@material-ui/core';
-import WebcamCapture from './webcam.js'
+import WebcamCapture from './webcam.js';
+import ReactPlayer from 'react-player';
+import Image from 'react-bootstrap/Image';
 
 
 function getRandomInt(max) {
@@ -50,7 +52,7 @@ class ZoomScreen extends React.Component {
       var neighbourName = this.props.neighbours.filter(seat => this.getGroup().includes(seat.id) && seat.name !== "Empty").map(seat => seat.name);
       this.state.names = neighbourName;
     }
-    
+
   }
 
   handleMinimize() {
@@ -218,8 +220,24 @@ class ZoomScreen extends React.Component {
       <div className={styles.global}>
         <div className={styles.outerFrame}>
           <div className={styles.zoom}>
+            <ReactPlayer
+              url="https://www.youtube.com/watch?v=jGwO_UgTS7I"
+              autoPlay
+              muted
+              playing={true}
+            />
+          </div>
+          <div className={styles.videosFrame}>
+            <ReactPlayer
+              url="https://www.youtube.com/watch?v=8S4GDVF2klk"
+              autoPlay
+              muted
+              width={"150px"}
+              height={"115px"}
+              playing={true}
+            />
+            <Image className={styles.icon} src={require('./noCameraUser.png')} />
             <WebcamCapture></WebcamCapture>
-            {/* <img className={styles.zoomImage} src={require('./zoomScreen.png')} /> */}
           </div>
           <div className={styles.chatFrame} >
             {this.state.showAllChat ? <this.allChat /> : null}

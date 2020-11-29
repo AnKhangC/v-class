@@ -11,6 +11,7 @@ const WebcamCapture = () => {
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
+          style = {{width : '150px' , height : '115px'}}
         />
       </>
     );

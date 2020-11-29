@@ -17,6 +17,21 @@
     flex-direction: row;
 }
 
+.videosFrame{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    height: 600px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.icon{
+    width: 150px;
+    height: 115px;
+}
+
 .leaveButton{
     margin-bottom: auto;
     display: flex;
