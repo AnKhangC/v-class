@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@material-ui/core';
 import styles from './JoinScreen.module.css';
@@ -13,6 +13,19 @@ import HelpOutlinedIcon from '@material-ui/icons/HelpOutlined';
 
 
 function JoinScreen() {
+  const [formInfo, setFormInfo] = useState({
+    username: "",
+    meetingId: ""
+  });
+
+  const handleChange = (prop) => (event) => {
+		setFormInfo({ ...formInfo, [prop]: event.target.value });
+  };
+  
+  const canSubmit = () => {
+    return formInfo.username.trim() !== "" && formInfo.meetingId.trim() !== ""
+  }
+
   return (
     <>
       <div className={styles.formContainer}>
@@ -22,7 +35,7 @@ function JoinScreen() {
 
         <div className={styles.fieldsContainer} >
           <Box m={1}>
-            <TextField className={styles.formFields} id="filled-basic" label="Username" variant="filled" />
+            <TextField onChange={handleChange("username")} className={styles.formFields} id="filled-basic" label="Username" variant="filled" />
             <Tooltip
               placement="right"
               title={
@@ -37,7 +50,7 @@ function JoinScreen() {
             </Tooltip>
           </Box>
           <Box m={1}>
-            <TextField className={styles.formFields} id="filled-basic" label="Meeting ID" variant="filled" />
+            <TextField onChange={handleChange("meetingId")} className={styles.formFields} id="filled-basic" label="Meeting ID" variant="filled" />
             <Tooltip
               placement="right"
               title={
@@ -53,8 +66,9 @@ function JoinScreen() {
           </Box>
         </div>
 
+        {!canSubmit() && <Typography variant="subtitle2" color="secondary">Please fill the form</Typography>}
         <div className={styles.buttonContainer}>
-          <Button variant="contained" color="primary" >
+          <Button disabled={!canSubmit()} variant="contained" color="primary" >
             <Link to="/seating" className={styles.linkClass}>Join Meeting</Link>
           </Button>
         </div>
