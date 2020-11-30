@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Prerequisites
+Before we get into how to navigate V-Class, here is an installation guide so that you can try the product for yourself.  
 
-## Available Scripts
+## Windows
+The project uses git as a version control system. This simply means that the user needs to have git installed to have access to our project. You can verify if you have git installed by typing “git version” in the command line. If a version number appears, then git is already installed. If an error message relating to “unknown command” comes up, you need to download git. This can be done at the following link: https://git-scm.com/downloads. 
 
-In the project directory, you can run:
+The app also needs Node.js and NPM to run the application. You can verify if you have these software the same way you did for git using “node -v” and “npm -v”. If any are missing please download Node.js which will install npm at the same time through the following link: https://nodejs.org/en/download/current/
 
-### `npm start`
+*Note: The pictures in this installation guide are taken of “git bash”, which is an application layer which provides an emulation layer for git command line experience. This command line is automatically installed with git. However, the same steps can also be accomplished using the normal windows command line. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Mac and Linux
+For mac and linux, git is installed by default. Please continue to the installation manual. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+The app also needs Node.js and NPM to run the application. You can verify if you have these software the same way you did for git using “node -v” and “npm -v”. If any are missing please download Node.js which will install npm at the same time through the following link: https://nodejs.org/en/download/current/
 
-### `npm test`
+## Internet Browser
+Our project should work on the internet browser of your choice. However, to make sure that the software works optimally, we recommend using either Google chrome or Firefox. They can be installed at the following links:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Google chrome: https://www.google.com/intl/en_ca/chrome/
 
-### `npm run build`
+Firefox: https://www.mozilla.org/en-CA/firefox/new/
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation Manual
+1. To download v-class, first open up your command line. Then, enter the following command “git clone https://github.com/AnKhangC/v-class.git”. This will download our project to your computer. 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+2. Navigate to the folder containing v-class using the following command: “cd v-class”. You are now in the project folder. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Run the “npm install” command. This may take a little while as it is downloading all the required dependencies for the project to run (picture only shows part of the download as numerous dependencies are installed).
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+4. Once it has finished executing, run the “npm start” command, which should automatically open up the project in your default internet browser.
+*Note: If you get an error, it probably means that your node / npm versions are not up to date. Please update their version. There are many ways to do so, the simplest is to update it through the Node installer by reinstalling Node.js (https://nodejs.org/en/download/current/).
+5. You should see the page below open in your internet browser. You are now ready to use V-Class!
+6. To close the V-Class, close the page in your internet browser and press “Ctrl + C” in your command line. 
